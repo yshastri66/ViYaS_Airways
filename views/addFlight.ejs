@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> My SQL</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./stylesheets/main.css">
+    </head>
+    <body style="background-color: ghostwhite;">
+    
+    <div class="container book-ticket" style="margin-top:2%;">
+        <div class="card mb-3 text-center " style="margin-top: 100px;">
+        <!-- style="margin:140px;" -->
+            <div class="card-header text-white bg-dark ">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height:30px;">
+                    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button> -->
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                      <a class="navbar-brand">ViYaS</a>
+                      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                      </ul>
+                      <span class="navbar-text">
+                        <a href="/admin">Back</a>
+                      </span>
+                    </div>
+                  </nav>
+            </div>
+            <div class="card-body" style="background-color:#ccccff">
+              <form action="/addFlight" method="POST">
+
+                <div  class="form row">
+                    <div style="display: flex;" class="col-md-6">
+                        <label style="margin-left: 16px;" for="From">From</label>
+                        <input class="form-control" type="text" style="margin-left: 96px;" name="From"  required class="validate" placeholder="Bangalore" id="From">    
+                    </div>
+                    <div style="display: flex;" class="col-md-6">
+                        <label style="margin-left: 8px;" for="To">To</label>
+                        <input class="form-control" type="text"style="margin-left: 112px;" name="To"  required class="validate" placeholder="Delhi" id="To">    
+                    </div>
+                </div>
+                <br>
+                <div  class="form row">
+                    <div style="display: flex;" class="col-md-6">
+                        <label style="margin-left: 16px;" for="Ddate">Departure Date</label>
+                        <input class="form-control" type="date"style="margin-left: 52px;" name="Ddate"  required class="validate" placeholder="dd-mm-yyyy" id="Ddate">    
+                    </div>
+                    <div style="display: flex;" class="col-md-6">
+                        <label for="Ddate">Arrival Date</label>
+                        <input class="form-control" type="date"style="margin-left: 62px;" name="Adate"  required class="validate" placeholder="dd-mm-yyyy" id="Ddate">    
+                    </div>
+                </div>
+                <br>
+                <div  class="form row">
+                    <div style="display: flex;" class="col-md-6">
+                        <label style="margin-left: 8px;" for="Atime">Departure Time (in IST)</label>
+                        <input class="form-control" type="time" style="margin-left: 12px;" name="ArrivalTime"  required class="validate" placeholder="Bangalore" id="Atime">    
+                    </div>
+                    <div style="display: flex;" class="col-md-6">
+                        <label for="Dtime">Arrival Time (in IST)</label>
+                        <input class="form-control" type="time" style="margin-left: 16px;" name="DepartureTime" required class="validate" placeholder="Delhi" id="Dtime">    
+                    </div>
+                </div>
+                <br>
+                <div  class="form row">
+                    <div style="display: flex;" class="col-md-6">
+                        <label style="margin-left: 16px;" for="Aseats">Total Seats</label>
+                        <input class="form-control" type="number" style="margin-left: 80px;" name="AvaSeats" min="1"  required class="validate" placeholder="No. of seats" id="Aseats">    
+                    </div>
+                    <div style="display: flex;" class="col-md-6">
+                        <label style="margin-left: 8px;" for="Aseats">Fare</label>
+                        <input class="form-control" type="number" style="margin-left: 98px;" name="Fare" min="1"  required class="validate" placeholder="10000" id="Aseats">    
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="submit"  value="Submit" class="btn btn-sm btn-dark"style="width:20%;height:30px;">
+                </div>
+                </form> 
+                  
+            </div>
+        </div>
+    
+</div>
+
+
+<%- include("./partials/footer") %>

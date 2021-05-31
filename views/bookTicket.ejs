@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> My SQL</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./stylesheets/main.css">
+    </head>
+    <body>
+    
+    <div class="container book-ticket" style="margin-top:2%;">
+        <% if(main===true){ %> 
+        <div class="card mb-3 text-center ">
+            <div class="card-header text-white bg-dark ">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height:30px;">
+                    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button> -->
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                      <a class="navbar-brand">ViYaS</a>
+                      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                      </ul>
+                      <span class="navbar-text">
+                        <a href="/passenger">Back</a>
+                      </span>
+                    </div>
+                  </nav>
+            </div>
+            <div class="card-body"style=" background-image:url(https://images.unsplash.com/photo-1558285549-827043e3d8a8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60);
+                 background-repeat: no-repeat;
+                 background-attachment: fixed;
+                 background-size: cover;" >
+              <form action="/bookTicket" method="POST">
+                <div  class="form row">
+                    <div style="display: flex;" class="col-md-6">
+                        <label for="From">From</label>
+                        <input class="form-control" type="text" style="margin-left: 16px;" name="From" required class="validate" placeholder="Bangalore" id="From">    
+                    </div>
+                    <div style="display: flex;" class="col-md-6">
+                        <label for="To">To</label>
+                        <input class="form-control" type="text"style="margin-left: 16px;" name="To" required class="validate" placeholder="Delhi" id="To">    
+                    </div>
+                </div>
+                <br>
+                <div  class="form row">
+                    <div style="display: flex;" class="col-md-6">
+                        <label for="Ddate">Date</label>
+                        <input class="form-control" type="date"style="margin-left: 16px;" name="Ddate" required class="validate" placeholder="dd-mm-yyyy" id="Ddate">    
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <button type="submit"  value="Search" class="btn btn-sm btn-dark"style="width:20%;height:30px;">Search</button>
+                </div> 
+              </form>
+            <% if(display === true){ %>
+                <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">From</th>
+                        <th scope="col">Departure Time</th>
+                        <th scope="col">To</th>
+                        <th scope="col">Arrival Time</th>
+                        <th scope="col">Fare</th>
+                        <th scope="col">Available Seats</th>
+                        <th scope="col">Book Ticket</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% for(rows of table){ %> 
+                      <tr>
+                        <td><%= rows.FROM_CITY %> </td>
+                        <td><%= rows.DEP_TIME %> </td>
+                        <td><%= rows.TO_CITY %> </td>
+                        <td><%= rows.ARR_TIME %> </td>
+                        <td>Rs.<%= rows.FARE %> </td>
+                        <td><%=rows.AVAIL_SEATS %>/<%=rows.TOTAL_SEATS%></td>
+                        <td>
+                            <form action="/bookTicket" method="post">
+                            <button type="submit" value="<%= rows.FLIGHT_ID %>" name="flightid" class="btn btn-lg btn-dark">Book</button>
+                            </form>
+                        </td>
+                      </tr>
+                      <% } %> 
+                    </tbody>
+                  </table> 
+            <% } else if(display==='No flights availble on this day'){%> 
+                <h4> <%=  display %></h4> 
+            <% } %> 
+                
+            </div>
+        </div> 
+    <% } %> 
+        <%if(content===true){ %> 
+          <% if(error===true){  %>
+            <h4 style="text-align: center;"><div class="p-3 mb-2 bg-warning text-dark">Password does'nt match. Please try again</div></h4> 
+          <% } %>
+        <div class="card mb-3 text-center ">
+            <div class="card-header text-white bg-dark ">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height:30px;">
+                    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button> -->
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                      <a class="navbar-brand" >Details</a>
+                      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                      </ul>
+                      <span class="navbar-text">
+                        <a href="/bookTicket">Back</a>
+                      </span>
+                    </div>
+                  </nav>
+            </div>
+            <div class="card-body"style=" background-image:url(https://images.unsplash.com/photo-1558285549-827043e3d8a8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60);
+                 background-repeat: no-repeat;
+                 background-attachment: fixed;
+                 background-size: cover;" >
+              <form action="/bookTicket" method="POST">
+
+                <div style="display: flex;" class="form-group col-md-6">
+                    <label for="pname">Passenger Name</label>
+                    <input type="text" style="margin-left: 52px;" class="form-control" id="name" name = "pname" required class="validate" placeholder="Passenger Name">
+                </div>
+                <br>
+                <div class="form-group col-md-6" style="display: flex;">
+                  <label for="password"> Password </label><br>
+                  <input class="form-control" type="password"style="margin-left: 58px;" name="password"  required class="validate" placeholder="password" id="password">  
+              </div>
+                <div  class="form row">
+                    <div class="form-group col-md-4" style="display: flex;">
+                        <label style="margin-left: 16px;" for="mob">Mobile</label><br>
+                        <input type="text" class="form-control" style="margin-left: 80px;" id="mob" name="num" required class="validate" placeholder="Mob number">
+                    </div>
+                    <div style="display: flex;" class="col-md-2">
+                        <label for="age">Age</label>
+                        <input class="form-control" type="number" style="margin-left: 16px;" name="age"  required class="validate" placeholder="age" min="1" max="100" id="age">    
+                    </div>
+                </div>
+                <br>
+                <div class="form row" style="margin-left: 14px;">
+                    <div class="form-check form-check-inline col-md-2">
+                    
+                        <input class="form-check-input" type="radio" name="sex" id="sex" value="Male">
+                        <label class="form-check-label" for="inlineRadio1">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline col-md-2">
+                        <input class="form-check-input" type="radio" name="sex" id="sex" value="Female">
+                        <label class="form-check-label" for="inlineRadio2">Female</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sex" id="sex" value="Others">
+                        <label class="form-check-label" for="inlineRadio3">Others</label>
+                    </div>
+                </div>
+                
+                <br>
+                
+                <div class="row">
+                    <div class="form-group col-md-6" style="display: flex;" >
+                        <label style="margin-left: 16px;" for="inputEmail">Email</label><br>
+                        <input type="email"style="margin-left: 98px;" class="form-control" id="inputEmail" name="email" required class="validate" placeholder="Email">
+                    </div>
+                    
+                </div>
+                <div class="form-group col-md-6"  style="display: flex;">
+                    <label for="mode">PaymentMode</label>
+                    <select style="margin-left: 16px;" id="mode" name="mode" class="form-control">
+                      <option selected>--mode--</option>
+                      <option>Credit Card</option>
+                      <option>Debit Card</option>
+                      <option>Net Banking</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <input type="submit"  value="Book Ticket" class="btn btn-lg btn-dark"style="width:20%;" >
+                </div>
+              </form>   
+            </div>
+        </div>
+    <% } %> 
+    </div>
+    
+
+<%- include("./partials/footer") %>

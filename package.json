@@ -1,0 +1,22 @@
+{
+  "name": "sql-project",
+  "version": "1.0.0",
+  "description": "global install package json to sql project folder",
+  "main": "app.js",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "method-override": "^3.0.0",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "yashodhara-supriya",
+  "license": "ISC",
+  "engines": {  
+   "node": "10.x"
+   }
+}

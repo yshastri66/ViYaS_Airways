@@ -1,0 +1,61 @@
+<%- include("./partials/header") %>
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand">View Ticket </a>
+    <a href="/passenger" class="btn btn btn-dark">Back</a>
+</nav>
+
+<% if(table.length!==0){ %> 
+ <% for(let row of table) {%>  
+ <div class="jumbotron card card-image" style="background-image: url(https://images.unsplash.com/photo-1574108326368-c3890f3e31f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTk4fHxmbGlnaHR8ZW58MHx8MHw%3D&auto=format&fit=crop&w=500&q=60); background-size: 100% 100%; margin: 2em; padding-top: 16px; padding-bottom: 16px;">
+    <div class="text-white text-center py-5 px-4">
+      <div>
+        <hr class="my-4 rgba-white-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <h3 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>VIYAS AIRWAYS</strong></h3>
+                    <h4><b>From : <%= row.FROM_CITY %> </b></h4>
+                    <h4><b> PNR Number :<%= row.PNR_NUM %></b></h4>
+                    <h4><b> Boarding Date :<%= row.DATE %></b></h4>
+                    <h4><b> Seat Number :<%= row.SEAT_NUMBER %></b></h4>
+
+                </div>
+                <div class="col-6">
+                    <% if(row.STATUS==='Confirmed'){ %> 
+                    <h3 class="card-title h1-responsive pt-3 mb-5 font-bold" style="color:greenyellow"><strong><i class="far fa-check-circle"></i><%= row.STATUS %></strong></h3>
+                    <% }else{ %>
+                    <h3 class="card-title h1-responsive pt-3 mb-5 font-bold" style="color:red"><strong><i class="fas fa-times"></i> <%= row.STATUS %></strong></h3>
+                    <% } %> 
+                    <h4><b> To :<%= row.TO_CITY %></b></h4>
+                    <h4><b> Passenger Name :<%= row.PASS_NAME %></b></h4>
+                    <h4><b> Boarding Time :<%= row.BOARD_TIME %></b></h4>
+                    <h4><b> Fare :<%= row.FARE %></b></h4>
+                </div>
+            </div>
+        </div>
+
+
+        <br>
+        <% if(row.STATUS==='Confirmed'){ %> 
+        <div class="pt-2">
+          <form action="/ticket" method="post">
+            <button onclick="myFunc()" type="submit" name="tick" value="<%= row.PNR_NUM %>" class="btn btn-outline-white"> Cancel Ticket <i class="fas fa-trash" style="margin-left: 4px;"></i></button>
+            <script>
+              function myFunc() {
+                alert("Do you really want to cancel the ticket!");
+                }
+            </script>
+          </form>
+        </div>
+      <% } %> 
+      </div>
+    </div>
+  </div>
+   <% } %> 
+<% }else{ %>
+  <div class="alert alert-secondary" role="alert" style="border-width: thick;width: 80%;margin: 100px 100px;text-align: center;">
+    <h4 class="alert-heading">Ticket not yet booked!</h4>
+    <p> Go to Book Ticket section to Book a ticket </p>
+    <p><a href="/bookTicket" class="alert-link">Book Ticket</a></p>
+  </div>
+<% } %> 

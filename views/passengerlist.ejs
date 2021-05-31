@@ -1,0 +1,46 @@
+<%- include("./partials/header") %>
+
+<nav class="navbar navbar-light bg-light">
+<a class="navbar-brand">Passenger List <% if(val===true && table.length!==0){%> of Flight ID : <%= table[0].FLIGHT_ID %> <% } %> </a>
+    <a href="/admin" class="btn btn btn-dark">Back</a>
+</nav>
+<% if(val===true){ %> 
+
+<% if(table.length!==0){ %> 
+<table class="table table-hover table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Transaction ID</th>
+        <th scope="col">Passenger Name</th>
+        <th scope="col">User ID</th>
+        <th scope="col">Payment Mode</th>
+        <th scope="col">Time</th>
+        <th scope="col">Fare</th>
+        <th scope="col">Seat Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <% for(let pass of table){ %>
+          <% if(pass.STATUS === 'Confirmed'){%> 
+        <tr>
+          <td><%= pass.TRANS_ID%></td>
+          <td><%= pass.PASS_NAME%></td>
+          <td><%= pass.USER_ID%></td>
+          <td><%= pass.MODE%></td>
+          <td><%= pass.TIME%></td>
+          <td><%= pass.FARE%></td>
+          <td><%= pass.SEAT_NUMBER%></td>
+        </tr>
+        <% } %> 
+        <% } %> 
+    </tbody>
+  </table>
+      <% }else{ %>
+        <div class="alert alert-secondary" role="alert" style="border-width: thick;width: 80%;margin: 100px 100px;text-align: center;">
+          <h2 class="alert-heading">Oops!</h2>
+          <h4 class="p-3 mb-2 "> No Passengers booked ticket for this Flight</h4>
+        </div>
+      <% } %>  
+<% }%>
+   

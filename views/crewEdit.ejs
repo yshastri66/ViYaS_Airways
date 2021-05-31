@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> My SQL</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./stylesheets/main.css">
+    </head>
+    <body style="background-color: ghostwhite;">
+    
+    <div class="container book-ticket" style="margin-top:2%;">
+        <div class="card mb-3 text-center ">
+        <!-- style="margin:140px;" -->
+            <div class="card-header text-white bg-dark ">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height:30px;">
+                    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button> -->
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                      <a class="navbar-brand">ViYaS</a>
+                      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                      </ul>
+                      <span class="navbar-text">
+                        <a href="/admin">Back</a>
+                      </span>
+                    </div>
+                  </nav>
+            </div>
+            <div class="card-body" style="background-color:#ccccff;">
+              <form action="/crewEditDetails" method="POST">
+                <% for(rows of table){ %>
+                <div  class="form row">
+                    <div style="display: block;" class="col-md-6">
+                        <label for="Crewid" style="margin-right: 430px;">Name </label><br>
+                        <input class="form-control" type="text" style="margin-left: 16px;" name="name" value="<%= rows.NAME %>" required class="validate" placeholder="" id="Crewid">    
+                    </div>
+                    <div class="form-group col-md-6"  style="display: block;">
+                        <label for="type" style="margin-right: 460px;">Type</label>
+                        <select id="type" class="form-control" name="type">
+                          <option selected><%= rows.TYPE %></option>
+                          <option>Air hostess</option>
+                          <option>Pilot</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div  class="form row">
+                    <div style="display: block;" class="col-md-6">
+                        <label for="Ddate" style="margin-right: 440px;">DOB</label>
+                        <input class="form-control" type="date"style="margin-left: 16px;" name="dob" value="<%= rows.DOB %>"  required class="validate" placeholder="dd-mm-yyyy" id="Ddate">    
+                    </div>
+                    <div style="display: block;" class="col-md-6">
+                        <label for="fare" style="margin-right: 442px;">Age</label>
+                        <input class="form-control" type="number"  required class="validate" value="<%= rows.AGE %>" name="age" min="1" max="100" id="fare">    
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="form row"  style="margin-left: 14px;">
+                    <div class="form-check form-check-inline">
+                    
+                        <input class="form-check-input" type="radio" name="sex" id="sex" value="Male" required class="validate">
+                        <label class="form-check-label" for="inlineRadio1">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sex" id="sex" value="Female" required class="validate">
+                        <label class="form-check-label" for="inlineRadio2">Female</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sex" id="sex" value="Others" required class="validate">
+                        <label class="form-check-label" for="inlineRadio3">Others</label>
+                    </div>
+                    
+                </div>
+                <br>
+                <br>
+                    <div style="display: block;" class="col-md-6">
+                        <label for="F_Id" style="margin-right: 420px;">Flight Id</label>
+                        <input class="form-control" type="text" style="margin-left: 6px;"value="<%= rows.ASS_FLIGHT %>"  required class="validate" name="Flight_Id" id="F_Id">    
+                    </div>
+                <br>
+                <div  class="form row">
+                    <div style="display: block;" class="col-md-6">
+                        <label for="Addr" style="margin-right: 410px;">Address</label>
+                        <input class="form-control" type="text" style="margin-left: 16px;" value="<%= rows.ADDRESS %>"  required class="validate" name="address" id="Addr">
+                    </div>
+                    <div style="display: block;" class="col-md-6">
+                        <label for="salary" style="margin-right: 420px;">Salary</label>
+                        <input class="form-control" type="number" name="salary"  value="<%= rows.SALARY %>" required class="validate" min="" max="" id="salary">    
+                    </div>
+                </div>
+                <br>
+                <div  class="form row">
+                    <div style="display: block;" class="col-md-6">
+                        <label for="email" style="margin-right: 440px;margin-bottom:none;">Email</label>
+                        <input class="form-control" type="email" style="margin-left: 16px;" value="<%= rows.EMAIL %>" required class="validate" name="email" id="email">
+                    </div>
+                    <div style="display: block;" class="col-md-6">
+                        <label for="phone" style="margin-right: 350px;">Phone number</label>
+                        <input class="form-control" type="text" required class="validate" value="<%= rows.PH_NO %>" name="phone" id="phone">    
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                        <button type="submit" value="<%=crewid %>" name="crewid" class="btn btn-sm btn-dark">EDIT</button>
+                </div>
+                <% } %>
+                 </form> 
+                  
+            </div>
+        </div>
+    
+</div>
+
+
+<%- include("./partials/footer") %>

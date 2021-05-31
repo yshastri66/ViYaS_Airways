@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> My SQL</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  font-size: 17px;
+}
+
+.container {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.container img {vertical-align: middle;}
+
+.container .content1 {
+  position: absolute;
+  top: 0;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+  color: #f1f1f1;
+  width: 96.2%;
+  padding: 20px;
+}
+.jumbotron {
+  font-size: 40px;   
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.btn-lg{
+    color: mistyrose;
+    font-size: 20px;
+    border-color: mistyrose;
+    margin-bottom: 5rem;
+    margin-top: 5rem;
+}
+
+</style>
+</head>
+<body style="background-color:whitesmoke;">
+
+
+<div class="container">
+  <img src="https://images.unsplash.com/photo-1503470098164-ba52ed1508d6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" 
+       style="width:100%; margin-top: 40px;">
+       <div class="jumbotron" style="background: transparent">
+        <a href="/bookTicket" class="btn btn-outline-dark btn-lg btn-block"> Book ticket</a>
+        <form action="/ticket" method="post">
+          <button type="submit" name="submit" value="<%= globalname %>" class="btn btn-outline-dark btn-lg btn-block"> View Ticket </button>
+        </form>
+    </div>
+  <div class="content1" style="margin-top: 40px;">
+    <a href="/"><i class="fa fa-sign-out btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="LOGOUT" aria-hidden="true" 
+      style="color: aliceblue;margin-left:680px;font-size: x-large;background-color: transparent"></i></a>
+
+    <h1 style="text-align: center;">ViYaS Airways</h1>
+  </div>
+</div>
+<% if(display===true){ %>
+  <script>alert("Ticket Booked successfully");</script> 
+<% } %> 
+<% if(display2===true){ %>
+  <script>alert("Ticket Cancelled successfully");</script> 
+<% } %> 
+<%-include("./partials/footer") %>

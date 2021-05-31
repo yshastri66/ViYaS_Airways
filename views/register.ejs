@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> My SQL</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./stylesheets/main.css">
+
+    </head>
+    <body 
+    style=" background-image:url(https://images.unsplash.com/photo-1528458909336-e7a0adfed0a5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60);background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;">
+        <style>
+            label{
+                color:whitesmoke;
+
+            }
+            form .form-control::-webkit-input-placeholder { 
+            color: #ced4da;
+            }
+            .form-control{
+                color: #ced4da;
+            }
+        </style>
+
+<% if(message==='user exist'){  %>
+    <h4 style="text-align: center;"><div style="display: inline-block;" class="p-3 mb-2 bg-dark text-light">Username already exist.. Please try different name</div></h4> 
+<% } %>   
+<div class="container">
+    <div>
+        <div class="jumbotron" style="width:40%;margin:20px auto;padding-bottom:10px;padding-top:20px;background-color: #880e4f;">
+            <h2 style="text-align:center;color:#cfd4da"> Create account</h2><br>
+
+            <form action="/register" method="POST">
+
+                <div class="form-group">
+                    <label for="name">Username</label><br>
+                    <input  class="form-control" type="text" id="name"  required class="validate" placeholder="Username" name="username" maxlength="20"
+                   style="color: #ced4da;background-color: transparent;border: none;border-bottom: 1px solid #ced4da;border-radius: 0;outline: none;box-shadow: none; ">
+                </div>
+                <div class="form-group">
+                    <label for="password"> Password </label><br>
+                    <input class="form-control" type="password" name="password" placeholder="Set password" required class="validate" id="password"
+                    style="color: #ced4da; background-color: transparent;border: none;border-bottom: 1px solid #ced4da;border-radius: 0;outline: none;box-shadow: none; ">  
+                </div>
+                <div class="form row">
+                    <div class="col-md-8">
+                        <label for="DOB">DOB</label><br>
+                        <input class="form-control" type="date" name="DOB" required class="validate" placeholder="DOB" id="DOB"
+                        style="color: #ced4da; background-color: transparent;border: none;border-bottom: 1px solid #ced4da;border-radius: 0;outline: none;box-shadow: none; ">    
+                    </div>
+                    <div class="col-md-4">
+                        <label for="age">Age</label>
+                        <input class="form-control" type="number" name="age" placeholder="age" min="1" max="100" required class="validate" id="age"
+                        style="color: #ced4da; background-color: transparent;border: none;border-bottom: 1px solid #ced4da;border-radius: 0;outline: none;box-shadow: none; ">    
+                    </div>
+                </div>
+                <br>
+                <div class="form-check form-check-inline">
+                    
+                    <input class="form-check-input" type="radio" name="sex" id="sex" value="Male">
+                    <label class="form-check-label" for="inlineRadio1">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="sex" id="sex" value="Female">
+                    <label class="form-check-label" for="inlineRadio2">Female</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="sex" id="sex" value="Others">
+                    <label class="form-check-label" for="inlineRadio3">Others</label>
+                </div>
+                <br><br>
+                <div class="form-group">
+                    <label for="inputAddress">Address</label><br>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" required class="validate" name="address"
+                    style="color: #ced4da; background-color: transparent;border: none;border-bottom: 1px solid #ced4da;border-radius: 0;outline: none;box-shadow: none; ">
+                </div>
+                <div class="form-group" >
+                        <label for="inputEmail">Email</label><br>
+                        <input type="email" class="form-control" id="inputEmail" placeholder="Email" required class="validate" name="email"
+                        style="color: #ced4da; background-color: transparent;border: none;border-bottom: 1px solid #ced4da;border-radius: 0;outline: none;box-shadow: none; ">
+                </div>
+                <div class="form-group">
+                    <label for="mob">Mobile number</label><br>
+                    <input type="text" class="form-control" id="mob" placeholder="Mobile number" required class="validate" name="mobnum"
+                    style="color: #ced4da; background-color: transparent;border: none;border-bottom: 1px solid #ced4da;border-radius: 0;outline: none;box-shadow: none; ">
+                </div>
+                <br>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block" style="border-radius: 0;outline: none;box-shadow: none;width:60%;margin-left: 76px;background-color: whitesmoke;
+                    color:black ;border:none;"> CREATE ACCOUNT</button>
+                </div> 
+            </form>
+        </div>
+    </div>
+</div>
+<%- include("./partials/footer") %>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> My SQL</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+    </head>
+    <body>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="jumbotron" style="background-color: white;width:75%;margin-left: 140px;">
+            <div class="card bg-dark text-white">
+                <img src="https://images.unsplash.com/photo-1574797306570-156f21bfb5ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                     class="card-img" style="height: 600px;">
+                <div class="card-img-overlay">
+                  <h5 class="card-title">FLIGHTS <a href="#">
+                    <!-- <i class="fa fa-plus btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="ADD QUERY" aria-hidden="true" 
+                    style="color: aliceblue;font-size:large;margin-left:320px; background-color: transparent"></i></a> -->
+                  </h5>
+                  <div class="card-body mb-3 text-center">
+                        <div style="margin-bottom: 88px;">
+                            <a href="/addFlight" class="btn btn-outline-light">ADD A FLIGHT</a>
+                        </div> 
+                        <div  style="margin-bottom: 88px;">
+                            <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal">CANCEL FLIGHT</button>
+                        </div>
+                        <!-- MODAL -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content" style="margin-top: 150px;">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel" style="color:black">Cancel Flight</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <form action="/admin?_method=DELETE" method="POST">
+                                    <div class="form-group">
+                                      <label for="recipient-name" class="col-form-label" style="color:black">Enter Flight Id</label>
+                                      <input type="text" class="form-control" id="recipient-name" name="flightid">
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      <button type="submit" class="btn btn-primary">DELETE</button>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- MODAL ENDS -->
+                        <div style="margin-bottom: 88px;">
+                          <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal3">
+                            SHOW FLIGHT LIST
+                          </button>
+                        </div>
+                        <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+                          <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel3" style="color:black">Flight List</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <table class="table">
+                                  <thead class="thead-dark">
+                                    <tr>
+                                      <th scope="col">Flight ID</th>
+                                      <th scope="col">From</th>
+                                      <th scope="col">To</th>
+                                      <th scope="col">Departure Date</th>
+                                      <th scope="col">Departure Time</th>
+                                      <th scope="col">Arrival Date</th>
+                                      <th scope="col">Arrival Time</th>
+                                      <th scope="col">Remaining Seats</th>
+                                      <th scope="col">Fare</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                     
+                                      <% for(rows of table1[0]){ %> 
+                                    <tr>
+                                      <th scope="row"><%= rows.FLIGHT_ID %> </td>
+                                      <td><%= rows.FROM_CITY %> </td>
+                                      <td><%= rows.TO_CITY %> </td>
+                                      <td><%= rows.DEP_DATE %> </td>
+                                      <td><%= rows.DEP_TIME %> </td>
+                                      <td><%= rows.ARR_DATE %> </td>
+                                      <td><%= rows.ARR_TIME %> </td>
+                                      <td><%= rows.AVAIL_SEATS %>/<%=rows.TOTAL_SEATS %> </td>
+                                      <td>Rs.<%= rows.FARE %> </td> 
+                                    </tr>
+                                      <% } %>
+                                   
+                                    
+                                  </tbody>
+                                </table>
+
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>  
+                        <div 1style="margin-bottom: 40px;">
+                          <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModalpass">PASSENGER LIST</button>
+                        </div> 
+                        <div class="modal fade" id="exampleModalpass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelpass" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="margin-top: 150px;">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel" style="color:black">Passenger List</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <form action="/admin" method="POST">
+                                  <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label" style="color:black">Enter Flight Id</label>
+                                    <input type="text" class="form-control" id="recipient-name" name="flightid">
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">SHOW</button>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>  
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="jumbotron" style="background-color: white;width:75%;margin-left: 50px;">
+            <div class="card bg-dark text-white">
+                <img src="https://images.unsplash.com/photo-1603641682230-d45b036897a5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                     class="card-img" style="height: 600px;">
+                <div class="card-img-overlay">
+                  <h5 class="card-title">CREW <a href="/"><i class="fa fa-sign-out btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="LOGOUT" aria-hidden="true" 
+                    style="color: aliceblue;font-size:large;margin-left:340px; background-color: transparent"></i></a>
+              </h5>
+                  <div class="card-body mb-3 text-center">
+                    <!-- <form> -->
+                      <div class="form-group" style="margin-bottom: 88px;">
+                        <a href="/addCrewDetails" class="btn btn-outline-light">ADD DETAILS</a>
+                      </div> 
+                      <div class="form-group" style="margin-bottom: 88px;">
+                        <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal2">REMOVE A MEMBER</button>
+                      </div>
+                      <!-- MODAL -->
+                      <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content" style="margin-top: 150px;">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel2" style="color:black">Remove a crew member</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form action="/admin?_method=DELETE" method="POST">
+                                <div class="form-group">
+                                  <label for="recipient-name" class="col-form-label" style="color:black">Enter Crew Id</label>
+                                  <input type="text" class="form-control" id="recipient-name" name="crewid">
+                                </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">DELETE</button>
+                              </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- MODAL ENDS -->  
+                      <div style="margin-bottom: 88px;">
+                        <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal4">
+                          PILOT LIST
+                        </button>
+                        <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+                          <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel3" style="color:black">Pilot List</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <table class="table">
+                                  <thead class="thead-dark">
+                                    <tr>
+                                      <th scope="col">Crew ID</th>
+                                      <th scope="col">Name</th>
+                                      <th scope="col">DOB</th>
+                                      <th scope="col">Assigned F_ID</th>
+                                      <th scope="col">Age</th>
+                                      <th scope="col">Sex</th>
+                                      <th scope="col">Salary</th>
+                                      <th scope="col">Email</th>
+                                      <th scope="col">Phone no</th>
+                                      <th scope="col">Address</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <% for(rows of table2){ %>
+                                      <th scope="row"><%= rows.CREW_ID %> </td>
+                                      <td><%= rows.NAME %> </td>
+                                      <td><%= rows.DOB %> </td>
+                                      <td><%= rows.ASS_FLIGHT %> </td>
+                                      <td><%= rows.AGE %> </td>
+                                      <td><%= rows.SEX %> </td>
+                                      <td>Rs.<%= rows.SALARY %></td>
+                                      <td><%= rows.EMAIL %> </td>
+                                      <td><%= rows.PH_NO %></td>
+                                      <td><%= rows.ADDRESS %> </td>
+                                    </tr>
+                                  
+                                    <% } %> 
+                                    
+                                  </tbody>
+                                </table>
+
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>  
+                        <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal5">
+                          AIR HOSTESS LIST
+                        </button>
+                        <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel5" aria-hidden="true">
+                          <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel3" style="color:black">Air hostess List</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <table class="table">
+                                  <thead class="thead-dark">
+                                    <tr>
+                                      <th scope="col">Crew ID</th>
+                                      <th scope="col">Name</th>
+                                      <th scope="col">DOB</th>
+                                      <th scope="col">Assigned F_ID</th>
+                                      <th scope="col">Age</th>
+                                      <th scope="col">Sex</th>
+                                      <th scope="col">Salary</th>
+                                      <th scope="col">Email</th>
+                                      <th scope="col">Phone no</th>
+                                      <th scope="col">Address</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <% for(rows of table3){ %>
+                                        <th scope="row"><%= rows.CREW_ID %> </td>
+                                          <td><%= rows.NAME %> </td>
+                                          <td><%= rows.DOB %> </td>
+                                          <td><%= rows.ASS_FLIGHT %> </td>
+                                          <td><%= rows.AGE %> </td>
+                                          <td><%= rows.SEX %> </td>
+                                          <td>Rs.<%= rows.SALARY %></td>
+                                          <td><%= rows.EMAIL %> </td>
+                                          <td><%= rows.PH_NO %></td>
+                                          <td><%= rows.ADDRESS %> </td>
+                                    </tr> 
+                                     
+                                  <% } %> 
+                                    
+                                  </tbody>
+                                </table>
+
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>  
+                      </div> 
+                      <div style="margin-bottom: 40px;">
+                        <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal6">
+                          EDIT INFO
+                        </button>                      
+                      </div>
+                      <div class="modal fade" id="exampleModal6" tabindex="-1" aria-labelledby="exampleModalLabel6" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel3" style="color:black">Crew Members</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <table class="table">
+                                <thead class="thead-dark">
+                                  <tr>
+                                    <th scope="col">Crew ID</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">DOB</th>
+                                    <th scope="col">Assigned F_ID</th>
+                                    <th scope="col">Age</th>
+                                    <th scope="col">Sex</th>
+                                    <th scope="col">Salary</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Phone no</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Edit</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <% for(rows of table4){ %>
+                                      <th scope="row"><%= rows.CREW_ID %> </td>
+                                        <td><%= rows.NAME %> </td>
+                                        <td><%= rows.TYPE %> </td>
+                                        <td><%= rows.DOB %> </td>
+                                        <td><%= rows.ASS_FLIGHT %> </td>
+                                        <td><%= rows.AGE %> </td>
+                                        <td><%= rows.SEX %> </td>
+                                        <td>Rs.<%= rows.SALARY %></td>
+                                        <td><%= rows.EMAIL %> </td>
+                                        <td><%= rows.PH_NO %></td>
+                                        <td><%= rows.ADDRESS %> </td>
+                                        <td>
+                                          <form action="/admin" method="post">
+                                          <button type="submit" value="<%= rows.CREW_ID %>" name="crewid" class="btn btn-sm btn-dark">EDIT</button>
+                                          </form>
+                                      </td>
+                                  </tr> 
+                                  <% } %> 
+                                  
+                                </tbody>
+                              </table>
+
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>  
+                    </div>    
+                    <!-- </form> -->
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
